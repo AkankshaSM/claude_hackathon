@@ -166,6 +166,60 @@ body {
     overflow-y: auto;
 }
 
+.category-header {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    background: white;
+    border-radius: 8px;
+    color: #990000;
+    border: 2px solid #FFCC00;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-header:hover {
+    background: #fff9e6;
+    transform: translateX(3px);
+}
+
+.category-header:first-child {
+    margin-top: 0;
+}
+
+.category-header h3 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    flex: 1;
+}
+
+.category-toggle {
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+    color: #990000;
+}
+
+.category-header.collapsed .category-toggle {
+    transform: rotate(-90deg);
+}
+
+.category-locations {
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+.category-locations.collapsed {
+    max-height: 0;
+    opacity: 0;
+}
+
 .location-item {
     padding: 12px;
     margin-bottom: 8px;
@@ -294,6 +348,44 @@ body {
 
 #map.hidden {
     display: none;
+}
+
+/* Map Legend */
+.map-legend {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    z-index: 100;
+    border: 2px solid #FFCC00;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-pin {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.legend-label {
+    font-size: 0.85em;
+    font-weight: 500;
+    color: #333;
+    white-space: nowrap;
 }
 
 /* Private Events View */
@@ -728,5 +820,26 @@ body {
 
     .events-grid {
         grid-template-columns: 1fr;
+    }
+
+    .map-legend {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 15px;
+        max-width: 90%;
+        bottom: 10px;
+    }
+
+    .legend-item {
+        gap: 5px;
+    }
+
+    .legend-label {
+        font-size: 0.75em;
+    }
+
+    .legend-pin {
+        width: 12px;
+        height: 12px;
     }
 }

@@ -1,24 +1,122 @@
 [
     {
         "name": "Tommy Trojan",
-        "position": { "lat": 34.0205, "lng": -118.2858 },
+        "position": { "lat": 34.020562, "lng": -118.285438 },
         "description": "Iconic USC landmark and symbol of the university. The bronze statue of a Trojan warrior stands guard in the heart of campus.",
         "category": "landmark",
         "icon": "🏛️"
     },
     {
-        "name": "Doheny Memorial Library",
-        "position": { "lat": 34.0204, "lng": -118.2839 },
-        "description": "Historic library featuring beautiful architecture and extensive research collections.",
+        "name": "Doheny Memorial Library (DML)",
+        "position": { "lat": 34.020187, "lng": -118.283687 },
+        "description": "Historic library featuring beautiful architecture and extensive research collections. Houses Special Collections and multiple specialized libraries.",
         "category": "library",
         "icon": "📚"
     },
     {
-        "name": "Leavey Library",
-        "position": { "lat": 34.0217, "lng": -118.2827 },
+        "name": "Leavey Library (LVL)",
+        "position": { "lat": 34.021812, "lng": -118.282938 },
         "description": "Modern 24-hour study facility with collaborative workspaces, computer labs, and café.",
         "category": "library",
         "icon": "💻"
+    },
+    {
+        "name": "Accounting Library",
+        "position": { "lat": 34.019188, "lng": -118.285562 },
+        "description": "Specialized library for accounting and business resources.",
+        "category": "library",
+        "icon": "📊"
+    },
+    {
+        "name": "Architecture and Fine Arts Library",
+        "position": { "lat": 34.019188, "lng": -118.288062 },
+        "description": "Specialized library supporting architecture, landscape architecture, and fine arts programs.",
+        "category": "library",
+        "icon": "🏛️"
+    },
+    {
+        "name": "Cinematic Arts Library",
+        "position": { "lat": 34.020063, "lng": -118.283563 },
+        "description": "Library dedicated to film, television, and interactive media resources.",
+        "category": "library",
+        "icon": "🎬"
+    },
+    {
+        "name": "East Asian Library",
+        "position": { "lat": 34.020187, "lng": -118.283687 },
+        "description": "Comprehensive collection of East Asian materials in Doheny Memorial Library.",
+        "category": "library",
+        "icon": "📖"
+    },
+    {
+        "name": "Gaughan & Tiberti Library",
+        "position": { "lat": 34.018687, "lng": -118.282438 },
+        "description": "Library serving the needs of students and faculty in business and related fields.",
+        "category": "library",
+        "icon": "💼"
+    },
+    {
+        "name": "Gerontology Library Services",
+        "position": { "lat": 34.020187, "lng": -118.283687 },
+        "description": "Specialized library supporting aging and gerontology research and education.",
+        "category": "library",
+        "icon": "👴"
+    },
+    {
+        "name": "Hoose Library of Philosophy",
+        "position": { "lat": 34.018687, "lng": -118.286563 },
+        "description": "Dedicated philosophy library with extensive philosophical texts and resources.",
+        "category": "library",
+        "icon": "🤔"
+    },
+    {
+        "name": "Law Library",
+        "position": { "lat": 34.018687, "lng": -118.284312 },
+        "description": "Comprehensive legal research library serving USC Gould School of Law.",
+        "category": "library",
+        "icon": "⚖️"
+    },
+    {
+        "name": "LIPA Library",
+        "position": { "lat": 34.021313, "lng": -118.284063 },
+        "description": "Library supporting the Laband Art Gallery and art history programs.",
+        "category": "library",
+        "icon": "🎨"
+    },
+    {
+        "name": "Music Library",
+        "position": { "lat": 34.020187, "lng": -118.283687 },
+        "description": "Extensive collection of musical scores, recordings, and music research materials.",
+        "category": "library",
+        "icon": "🎵"
+    },
+    {
+        "name": "Science & Engineering Library",
+        "position": { "lat": 34.019562, "lng": -118.288813 },
+        "description": "Specialized library supporting science, technology, engineering, and mathematics programs.",
+        "category": "library",
+        "icon": "⚙️"
+    },
+    {
+        "name": "Special Collections, Doheny Memorial Library",
+        "position": { "lat": 34.019937, "lng": -118.283563 },
+        "description": "Rare books, manuscripts, and unique archival materials.",
+        "category": "library",
+        "icon": "📜"
+    },
+    {
+        "name": "Wilson Dental Library",
+        "position": { "lat": 34.023688, "lng": -118.285938 },
+        "description": "Library serving the Herman Ostrow School of Dentistry with dental and health sciences resources.",
+        "category": "library",
+        "icon": "🦷"
+    },
+    {
+        "name": "Hancock Memorial Museum",
+        "position": { "lat": 34.0197, "lng": -118.2851 },
+        "description": "Historic museum showcasing USC history and artifacts.",
+        "category": "museum",
+        "icon": "🏛️"
     },
     {
         "name": "USC Village",
@@ -38,14 +136,14 @@
         "name": "Bovard Auditorium",
         "position": { "lat": 34.0200, "lng": -118.2854 },
         "description": "Historic auditorium hosting lectures, performances, and special events.",
-        "category": "academic",
+        "category": "department",
         "icon": "🎭"
     },
     {
         "name": "USC School of Cinematic Arts",
         "position": { "lat": 34.0237, "lng": -118.2874 },
         "description": "World-renowned film school with cutting-edge facilities and production studios.",
-        "category": "academic",
+        "category": "department",
         "icon": "🎬"
     },
     {
@@ -66,42 +164,42 @@
         "name": "Taper Hall",
         "position": { "lat": 34.0201, "lng": -118.2865 },
         "description": "Humanities and social sciences building with modern classrooms.",
-        "category": "academic",
+        "category": "department",
         "icon": "🎓"
     },
     {
         "name": "Mudd Hall of Philosophy",
         "position": { "lat": 34.0213, "lng": -118.2849 },
         "description": "Home to the USC School of Philosophy.",
-        "category": "academic",
+        "category": "department",
         "icon": "🤔"
     },
     {
         "name": "Tutor Campus Center",
         "position": { "lat": 34.0205, "lng": -118.2875 },
         "description": "Student center with dining options, bookstore, and meeting spaces.",
-        "category": "dining",
+        "category": "eateries",
         "icon": "🍽️"
     },
     {
         "name": "Parkside Dining Hall",
         "position": { "lat": 34.0183, "lng": -118.2897 },
         "description": "All-you-can-eat dining facility with diverse food stations.",
-        "category": "dining",
+        "category": "eateries",
         "icon": "🍕"
     },
     {
         "name": "Viterbi School of Engineering",
         "position": { "lat": 34.0197, "lng": -118.2891 },
         "description": "State-of-the-art engineering facilities and research labs.",
-        "category": "academic",
+        "category": "department",
         "icon": "⚙️"
     },
     {
         "name": "Marshall School of Business",
         "position": { "lat": 34.0187, "lng": -118.2850 },
         "description": "Top-ranked business school with modern facilities and experiential learning centers.",
-        "category": "academic",
+        "category": "department",
         "icon": "💼"
     }
 ]

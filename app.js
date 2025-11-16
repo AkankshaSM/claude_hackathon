@@ -103,9 +103,26 @@ function initStreetView() {
     });
 }
 
+// Category color mapping
+function getCategoryColor(category) {
+    const colors = {
+        'library': '#4285F4',      // Blue
+        'museum': '#9C27B0',       // Purple
+        'department': '#990000',   // USC Cardinal Red
+        'eateries': '#FF9800',     // Orange
+        'landmark': '#FFCC00',     // USC Gold
+        'housing': '#00BCD4',      // Cyan
+        'recreation': '#4CAF50',   // Green
+        'sports': '#F44336'        // Bright Red
+    };
+    return colors[category] || '#990000'; // Default to USC Cardinal
+}
+
 // Add markers for campus locations
 function addCampusMarkers() {
     campusLocations.forEach((location, index) => {
+        const markerColor = getCategoryColor(location.category);
+
         const marker = new google.maps.Marker({
             position: location.position,
             map: map,
@@ -113,10 +130,10 @@ function addCampusMarkers() {
             animation: google.maps.Animation.DROP,
             icon: {
                 path: google.maps.SymbolPath.CIRCLE,
-                fillColor: '#990000',
+                fillColor: markerColor,
                 fillOpacity: 1,
-                strokeColor: '#FFCC00',
-                strokeWeight: 3,
+                strokeColor: '#FFFFFF',
+                strokeWeight: 2,
                 scale: 10
             }
         });
@@ -153,27 +170,78 @@ function addCampusMarkers() {
 function populateLocationList() {
     const locationList = document.getElementById('locationList');
 
+    // Group locations by category
+    const categories = {
+        'library': { title: '📚 Libraries', locations: [] },
+        'museum': { title: '🏛️ Museums', locations: [] },
+        'department': { title: '🎓 Departments', locations: [] },
+        'eateries': { title: '🍽️ Eateries', locations: [] },
+        'landmark': { title: '⭐ Landmarks', locations: [] },
+        'housing': { title: '🏘️ Housing', locations: [] },
+        'recreation': { title: '💪 Recreation', locations: [] },
+        'sports': { title: '🏀 Sports', locations: [] }
+    };
+
+    // Group locations
     campusLocations.forEach(location => {
-        const item = document.createElement('div');
-        item.className = 'location-item';
-        item.innerHTML = `
-            <h4>${location.icon} ${location.name}</h4>
-            <p>${location.category}</p>
-        `;
+        if (categories[location.category]) {
+            categories[location.category].locations.push(location);
+        }
+    });
 
-        item.addEventListener('click', () => {
-            map.panTo(location.position);
-            map.setZoom(18);
-            showLocationInfo(location);
+    // Display locations grouped by category
+    Object.keys(categories).forEach(categoryKey => {
+        const category = categories[categoryKey];
+        if (category.locations.length > 0) {
+            // Create category header
+            const categoryHeader = document.createElement('div');
+            categoryHeader.className = 'category-header';
+            categoryHeader.innerHTML = `
+                <h3>${category.title}</h3>
+                <span class="category-toggle">▼</span>
+            `;
 
-            // Find and click the corresponding marker
-            const markerObj = markers.find(m => m.location.name === location.name);
-            if (markerObj) {
-                google.maps.event.trigger(markerObj.marker, 'click');
-            }
-        });
+            // Create container for category locations
+            const categoryLocations = document.createElement('div');
+            categoryLocations.className = 'category-locations collapsed'; // Start collapsed
 
-        locationList.appendChild(item);
+            // Start header as collapsed
+            categoryHeader.classList.add('collapsed');
+
+            // Add toggle functionality
+            categoryHeader.addEventListener('click', () => {
+                categoryHeader.classList.toggle('collapsed');
+                categoryLocations.classList.toggle('collapsed');
+            });
+
+            locationList.appendChild(categoryHeader);
+
+            // Add locations in this category
+            category.locations.forEach(location => {
+                const item = document.createElement('div');
+                item.className = 'location-item';
+                item.innerHTML = `
+                    <h4>${location.icon} ${location.name}</h4>
+                    <p>${location.description.substring(0, 60)}...</p>
+                `;
+
+                item.addEventListener('click', () => {
+                    map.panTo(location.position);
+                    map.setZoom(18);
+                    showLocationInfo(location);
+
+                    // Find and click the corresponding marker
+                    const markerObj = markers.find(m => m.location.name === location.name);
+                    if (markerObj) {
+                        google.maps.event.trigger(markerObj.marker, 'click');
+                    }
+                });
+
+                categoryLocations.appendChild(item);
+            });
+
+            locationList.appendChild(categoryLocations);
+        }
     });
 }
 
