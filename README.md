@@ -102,10 +102,8 @@ npx http-server
 
 ### Configuration
 
-The Google Maps API key is already configured in the project:
-- **API Key**: `AIzaSyAHws8TV4MS8Z33tjc8TZxuIIi7PAjtuIc`
-- **Libraries**: Places, Geometry
-- **Restrictions**: Configured for this project
+Put your Google Maps API key in the project in .env file:
+- Check sample .env.example
 
 No additional configuration needed - just open and use!
 
