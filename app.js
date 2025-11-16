@@ -16,117 +16,31 @@ let isAuthenticated = false;
 let userEmail = '';
 let sessionToken = '';
 
-// Campus Locations with detailed information
-const campusLocations = [
-    {
-        name: "Tommy Trojan",
-        position: { lat: 34.0205, lng: -118.2858 },
-        description: "Iconic USC landmark and symbol of the university. The bronze statue of a Trojan warrior stands guard in the heart of campus.",
-        category: "landmark",
-        icon: "🏛️"
-    },
-    {
-        name: "Doheny Memorial Library",
-        position: { lat: 34.0204, lng: -118.2839 },
-        description: "Historic library featuring beautiful architecture and extensive research collections.",
-        category: "library",
-        icon: "📚"
-    },
-    {
-        name: "Leavey Library",
-        position: { lat: 34.0217, lng: -118.2827 },
-        description: "Modern 24-hour study facility with collaborative workspaces, computer labs, and café.",
-        category: "library",
-        icon: "💻"
-    },
-    {
-        name: "USC Village",
-        position: { lat: 34.0251, lng: -118.2855 },
-        description: "State-of-the-art residential and retail complex featuring dining, housing, and shopping.",
-        category: "housing",
-        icon: "🏘️"
-    },
-    {
-        name: "Lyon Center",
-        position: { lat: 34.0197, lng: -118.2876 },
-        description: "Premier fitness and recreation center with gym, pool, and various sports facilities.",
-        category: "recreation",
-        icon: "💪"
-    },
-    {
-        name: "Bovard Auditorium",
-        position: { lat: 34.0200, lng: -118.2854 },
-        description: "Historic auditorium hosting lectures, performances, and special events.",
-        category: "academic",
-        icon: "🎭"
-    },
-    {
-        name: "USC School of Cinematic Arts",
-        position: { lat: 34.0237, lng: -118.2874 },
-        description: "World-renowned film school with cutting-edge facilities and production studios.",
-        category: "academic",
-        icon: "🎬"
-    },
-    {
-        name: "Galen Center",
-        position: { lat: 34.0223, lng: -118.2886 },
-        description: "Multi-purpose arena and home to USC basketball and volleyball teams.",
-        category: "sports",
-        icon: "🏀"
-    },
-    {
-        name: "Los Angeles Memorial Coliseum",
-        position: { lat: 34.0141, lng: -118.2879 },
-        description: "Historic stadium, home of USC football and host of two Olympic Games.",
-        category: "sports",
-        icon: "🏈"
-    },
-    {
-        name: "Taper Hall",
-        position: { lat: 34.0201, lng: -118.2865 },
-        description: "Humanities and social sciences building with modern classrooms.",
-        category: "academic",
-        icon: "🎓"
-    },
-    {
-        name: "Mudd Hall of Philosophy",
-        position: { lat: 34.0213, lng: -118.2849 },
-        description: "Home to the USC School of Philosophy.",
-        category: "academic",
-        icon: "🤔"
-    },
-    {
-        name: "Tutor Campus Center",
-        position: { lat: 34.0205, lng: -118.2875 },
-        description: "Student center with dining options, bookstore, and meeting spaces.",
-        category: "dining",
-        icon: "🍽️"
-    },
-    {
-        name: "Parkside Dining Hall",
-        position: { lat: 34.0183, lng: -118.2897 },
-        description: "All-you-can-eat dining facility with diverse food stations.",
-        category: "dining",
-        icon: "🍕"
-    },
-    {
-        name: "Viterbi School of Engineering",
-        position: { lat: 34.0197, lng: -118.2891 },
-        description: "State-of-the-art engineering facilities and research labs.",
-        category: "academic",
-        icon: "⚙️"
-    },
-    {
-        name: "Marshall School of Business",
-        position: { lat: 34.0187, lng: -118.2850 },
-        description: "Top-ranked business school with modern facilities and experiential learning centers.",
-        category: "academic",
-        icon: "💼"
+// Campus Locations - loaded from API
+let campusLocations = [];
+
+// Load campus locations from API
+async function loadCampusLocations() {
+    try {
+        const response = await fetch('/api/campus-locations');
+        const data = await response.json();
+
+        if (response.ok) {
+            campusLocations = data.locations;
+            console.log('Campus locations loaded:', campusLocations.length);
+        } else {
+            console.error('Failed to load campus locations');
+        }
+    } catch (error) {
+        console.error('Error loading campus locations:', error);
     }
-];
+}
 
 // Initialize the application
-function initMap() {
+async function initMap() {
+    // Load campus locations first
+    await loadCampusLocations();
+
     // Create the map
     map = new google.maps.Map(document.getElementById('map'), {
         center: USC_CENTER,

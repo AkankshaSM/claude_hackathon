@@ -145,6 +145,20 @@ app.get('/api/maps-config', (req, res) => {
     });
 });
 
+// Get campus locations
+app.get('/api/campus-locations', (req, res) => {
+    try {
+        const locationsFilePath = path.join(__dirname, 'data', 'campusLocations.json');
+        const locationsData = fs.readFileSync(locationsFilePath, 'utf8');
+        const campusLocations = JSON.parse(locationsData);
+
+        res.json({ locations: campusLocations });
+    } catch (error) {
+        console.error('Error reading campus locations:', error);
+        res.status(500).json({ error: 'Failed to load campus locations' });
+    }
+});
+
 // Get private events (only for authenticated users)
 app.get('/api/private-events', (req, res) => {
     const authHeader = req.headers.authorization;
@@ -156,7 +170,7 @@ app.get('/api/private-events', (req, res) => {
     // In production, validate the token properly
     try {
         // Read private events from JSON file
-        const eventsFilePath = path.join(__dirname, 'privateEvents.json');
+        const eventsFilePath = path.join(__dirname, 'data', 'privateEvents.json');
         const eventsData = fs.readFileSync(eventsFilePath, 'utf8');
         const privateEvents = JSON.parse(eventsData);
 
