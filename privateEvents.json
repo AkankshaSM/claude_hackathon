@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "name": "USC Alumni Networking Night",
+        "date": "2025-11-20",
+        "time": "6:00 PM - 9:00 PM",
+        "location": "Marshall School of Business",
+        "description": "Exclusive networking event for USC alumni and current students. Connect with industry leaders and fellow Trojans.",
+        "attendees": 150,
+        "category": "networking"
+    },
+    {
+        "id": 2,
+        "name": "Trojan Tech Talks - AI Innovation",
+        "date": "2025-11-22",
+        "time": "4:00 PM - 7:00 PM",
+        "location": "Viterbi School of Engineering",
+        "description": "Private seminar featuring USC faculty and tech industry experts discussing the latest in AI and machine learning.",
+        "attendees": 80,
+        "category": "tech"
+    },
+    {
+        "id": 3,
+        "name": "USC Career Fair - Premium Access",
+        "date": "2025-11-25",
+        "time": "10:00 AM - 4:00 PM",
+        "location": "Galen Center",
+        "description": "Early access to the USC Career Fair. Meet with top employers before the public session.",
+        "attendees": 200,
+        "category": "career"
+    },
+    {
+        "id": 4,
+        "name": "Cinema Arts Screening & Q&A",
+        "date": "2025-11-27",
+        "time": "7:00 PM - 10:00 PM",
+        "location": "USC School of Cinematic Arts",
+        "description": "Exclusive screening of student films followed by Q&A with award-winning directors.",
+        "attendees": 100,
+        "category": "arts"
+    },
+    {
+        "id": 5,
+        "name": "Entrepreneurship Workshop",
+        "date": "2025-11-30",
+        "time": "2:00 PM - 5:00 PM",
+        "location": "Tutor Campus Center",
+        "description": "Private workshop with successful USC entrepreneurs. Learn about startup funding, pitching, and scaling.",
+        "attendees": 50,
+        "category": "business"
+    }
+]

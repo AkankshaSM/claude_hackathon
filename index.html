@@ -11,8 +11,19 @@
     <div class="container">
         <!-- Header -->
         <header class="header">
-            <h1>🎓 USC University Park Campus Explorer</h1>
-            <p class="subtitle">Interactive Campus Map with Real-Time Information</p>
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>🎓 USC University Park Campus Explorer</h1>
+                    <p class="subtitle">Interactive Campus Map with Real-Time Information</p>
+                </div>
+                <div class="header-auth">
+                    <button id="loginBtn" class="auth-btn">Login</button>
+                    <div id="userInfo" class="user-info" style="display: none;">
+                        <span id="userEmail" class="user-email"></span>
+                        <button id="logoutBtn" class="auth-btn logout-btn">Logout</button>
+                    </div>
+                </div>
+            </div>
         </header>
 
         <!-- Control Panel -->
@@ -44,6 +55,9 @@
                     <button class="view-btn" id="street-view-btn">
                         <span>👁️</span> Street View
                     </button>
+                    <button class="view-btn" id="private-events-btn" style="display: none;">
+                        <span>🎫</span> Private Events
+                    </button>
                 </div>
             </div>
 
@@ -66,6 +80,7 @@
             <div class="map-container">
                 <div id="map"></div>
                 <div id="street-view" class="street-view-container"></div>
+                <div id="private-events-view" class="private-events-container"></div>
             </div>
 
             <!-- Info Panel -->
@@ -89,8 +104,35 @@
         </footer>
     </div>
 
-    <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHws8TV4MS8Z33tjc8TZxuIIi7PAjtuIc&libraries=places,geometry&callback=initMap" async defer></script>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login to USC Campus Explorer</h2>
+            <p class="modal-subtitle">Enter your email to receive an OTP</p>
+
+            <div id="emailStep" class="auth-step">
+                <input type="email" id="emailInput" class="auth-input" placeholder="Enter your email" required>
+                <button id="sendOtpBtn" class="auth-submit-btn">Send OTP</button>
+                <div id="emailError" class="error-message"></div>
+            </div>
+
+            <div id="otpStep" class="auth-step" style="display: none;">
+                <p class="otp-info">We've sent a 6-digit OTP to <strong id="displayEmail"></strong></p>
+                <input type="text" id="otpInput" class="auth-input" placeholder="Enter 6-digit OTP" maxlength="6" required>
+                <button id="verifyOtpBtn" class="auth-submit-btn">Verify OTP</button>
+                <button id="resendOtpBtn" class="resend-btn">Resend OTP</button>
+                <div id="otpError" class="error-message"></div>
+                <button id="backToEmailBtn" class="back-btn">Change Email</button>
+            </div>
+
+            <div id="devModeInfo" class="dev-info" style="display: none;">
+                <p>Development Mode: OTP will be displayed in console</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Maps API - Loaded dynamically via app.js -->
     <script src="app.js"></script>
 </body>
 </html>
