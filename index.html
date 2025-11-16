@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USC UPC Campus Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎓 USC University Park Campus Explorer</h1>
+            <p class="subtitle">Interactive Campus Map with Real-Time Information</p>
+        </header>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="control-section">
+                <h3>Map Layers</h3>
+                <div class="layer-controls">
+                    <button class="layer-btn active" data-layer="roadmap">
+                        <span>🗺️</span> Roadmap
+                    </button>
+                    <button class="layer-btn" data-layer="satellite">
+                        <span>🛰️</span> Satellite
+                    </button>
+                    <button class="layer-btn" data-layer="terrain">
+                        <span>⛰️</span> Terrain
+                    </button>
+                    <button class="layer-btn" data-layer="hybrid">
+                        <span>🔀</span> Hybrid
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>Views</h3>
+                <div class="view-controls">
+                    <button class="view-btn active" id="map-view-btn">
+                        <span>🗺️</span> Map View
+                    </button>
+                    <button class="view-btn" id="street-view-btn">
+                        <span>👁️</span> Street View
+                    </button>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>Campus Locations</h3>
+                <div class="location-list" id="locationList">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="content-wrapper">
+            <!-- Weather Widget -->
+            <div class="weather-widget" id="weatherWidget">
+                <div class="weather-loading">Loading weather data...</div>
+            </div>
+
+            <!-- Map Container -->
+            <div class="map-container">
+                <div id="map"></div>
+                <div id="street-view" class="street-view-container"></div>
+            </div>
+
+            <!-- Info Panel -->
+            <div class="info-panel" id="infoPanel">
+                <div class="info-content">
+                    <h2>Welcome to USC UPC Campus Explorer</h2>
+                    <p>Select a location from the list or click on a marker to learn more about campus buildings and facilities.</p>
+                    <ul>
+                        <li>Switch between different map layers</li>
+                        <li>View real-time weather conditions</li>
+                        <li>Explore campus in Street View</li>
+                        <li>Discover key campus locations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>USC University Park Campus | Built for USC Students</p>
+        </footer>
+    </div>
+
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHws8TV4MS8Z33tjc8TZxuIIi7PAjtuIc&libraries=places,geometry&callback=initMap" async defer></script>
+    <script src="app.js"></script>
+</body>
+</html>
