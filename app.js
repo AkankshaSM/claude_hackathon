@@ -4,12 +4,127 @@
 // USC Campus Center Coordinates
 const USC_CENTER = { lat: 34.0224, lng: -118.2851 };
 
+// UPC (University Park Campus) Boundary Coordinates
+const UPC_BOUNDARY = [
+  { lat: 34.02538795792243, lng: -118.28889915978908 },
+  { lat: 34.025380733213545, lng: -118.28862160193921 },
+  { lat: 34.025387124302156, lng: -118.28851769173147 },
+  { lat: 34.02537639144105, lng: -118.28839171490074 },
+  { lat: 34.02538121949211, lng: -118.2883006067872 },
+  { lat: 34.0253808721503, lng: -118.28824847769738 },
+  { lat: 34.02537906597296, lng: -118.28819249927999 },
+  { lat: 34.025303692770706, lng: -118.28788136938213 },
+  { lat: 34.02517274469791, lng: -118.28755951064825 },
+  { lat: 34.02488861794596, lng: -118.28695066189765 },
+  { lat: 34.02433592269312, lng: -118.2857544220686 },
+  { lat: 34.02325052878057, lng: -118.28333243811132 },
+  { lat: 34.02306512618106, lng: -118.28292199202907 },
+  { lat: 34.02223170077203, lng: -118.28105778866076 },
+  { lat: 34.02204762919941, lng: -118.2806553211026 },
+  { lat: 34.02189512376674, lng: -118.28031038483233 },
+  { lat: 34.021873779839105, lng: -118.28028463143484 },
+  { lat: 34.02185021282619, lng: -118.28026424245537 },
+  { lat: 34.0217915140197, lng: -118.28026181170345 },
+  { lat: 34.02173858571128, lng: -118.28029181891681 },
+  { lat: 34.021632728995435, lng: -118.28035987997056 },
+  { lat: 34.02120759814971, lng: -118.28060597264768 },
+  { lat: 34.020046092839095, lng: -118.2813663789034 },
+  { lat: 34.0198738263621, lng: -118.28149165613019 },
+  { lat: 34.01978435829165, lng: -118.28155161253457 },
+  { lat: 34.01969489012671, lng: -118.28160620452091 },
+  { lat: 34.01939259514921, lng: -118.28179909148068 },
+  { lat: 34.01897808194063, lng: -118.28206416599454 },
+  { lat: 34.01857478674797, lng: -118.28232877632976 },
+  { lat: 34.01847960741354, lng: -118.28238726931812 },
+  { lat: 34.01846265575445, lng: -118.2824130601883 },
+  { lat: 34.018390958535946, lng: -118.28306009232999 },
+  { lat: 34.01839332065457, lng: -118.28393095937372 },
+  { lat: 34.018406798624284, lng: -118.28519879335167 },
+  { lat: 34.01841152286057, lng: -118.28623510646821 },
+  { lat: 34.01840763231298, lng: -118.28727776443958 },
+  { lat: 34.01841211920752, lng: -118.2895512314197 },
+  { lat: 34.01841549451688, lng: -118.290057122659 },
+  { lat: 34.01841112928606, lng: -118.29064109279972 },
+  { lat: 34.01841573784392, lng: -118.29070396296703 },
+  { lat: 34.0184271781285, lng: -118.29079751679348 },
+  { lat: 34.01843227333952, lng: -118.29129039627406 },
+  { lat: 34.01844070330411, lng: -118.29133266464015 },
+  { lat: 34.01845691435891, lng: -118.29135615754313 },
+  { lat: 34.01849155962711, lng: -118.2913944261698 },
+  { lat: 34.01854621338143, lng: -118.2914031904973 },
+  { lat: 34.018987143826934, lng: -118.29138460362702 },
+  { lat: 34.01951551915572, lng: -118.29138766302168 },
+  { lat: 34.02053224389611, lng: -118.29140182843804 },
+  { lat: 34.02125404062084, lng: -118.29139797276258 },
+  { lat: 34.02194177267038, lng: -118.29141708350181 },
+  { lat: 34.02207277753008, lng: -118.29140451064706 },
+  { lat: 34.02215431885141, lng: -118.2914019960761 },
+  { lat: 34.022231948238684, lng: -118.29140187034756 },
+  { lat: 34.02225455660753, lng: -118.29140174461901 },
+  { lat: 34.02227976571149, lng: -118.29139679929614 },
+  { lat: 34.02232351469473, lng: -118.29139227306842 },
+  { lat: 34.02426214635806, lng: -118.29138539990782 },
+  { lat: 34.024709596763316, lng: -118.29138196332752 },
+  { lat: 34.02515704480944, lng: -118.29139462000131 },
+  { lat: 34.02522887524942, lng: -118.291393781811 },
+  { lat: 34.02530480426541, lng: -118.2913967154771 },
+  { lat: 34.02535405736033, lng: -118.29139428472519 },
+  { lat: 34.025357947589484, lng: -118.2913869086504 },
+  { lat: 34.025367395288036, lng: -118.29135807490348 },
+  { lat: 34.025363643996144, lng: -118.29112354925275 },
+  { lat: 34.02537323063079, lng: -118.29096412545442 },
+  { lat: 34.02537670404889, lng: -118.29031117519736 }
+];
+
+// USC Village Boundary Coordinates
+const USC_VILLAGE_BOUNDARY = [
+  { lat: 34.02724485474212, lng: -118.28544700098037 },
+  { lat: 34.02728542336175, lng: -118.285306532979 },
+  { lat: 34.02728375615857, lng: -118.2847422759533 },
+  { lat: 34.02727153000101, lng: -118.28415020370483 },
+  { lat: 34.02656942754135, lng: -118.28414215707778 },
+  { lat: 34.02566058237583, lng: -118.28413142824172 },
+  { lat: 34.025367634774895, lng: -118.28410521304608 },
+  { lat: 34.025068017176125, lng: -118.28404949355125 },
+  { lat: 34.02472887072996, lng: -118.28399706315994 },
+  { lat: 34.02449420449318, lng: -118.28395804381371 },
+  { lat: 34.02437687113148, lng: -118.28394792187214 },
+  { lat: 34.02425953760752, lng: -118.2839592576027 },
+  { lat: 34.02414586843059, lng: -118.28399955864252 },
+  { lat: 34.024027753055776, lng: -118.28406668177249 },
+  { lat: 34.02398714814404, lng: -118.28413119059802 },
+  { lat: 34.02396877345992, lng: -118.28419838163258 },
+  { lat: 34.023981521114536, lng: -118.28427093708517 },
+  { lat: 34.02405474193844, lng: -118.28440290856364 },
+  { lat: 34.02425453581962, lng: -118.28487069940567 },
+  { lat: 34.02453074522291, lng: -118.28547234606742 },
+  { lat: 34.02476693967362, lng: -118.28597475099565 },
+  { lat: 34.0249364435213, lng: -118.28634706878663 },
+  { lat: 34.025108170024936, lng: -118.2867193865776 },
+  { lat: 34.025145127301506, lng: -118.28680093932152 },
+  { lat: 34.025182084562, lng: -118.28686103439331 },
+  { lat: 34.02523682573776, lng: -118.28684066319467 },
+  { lat: 34.02527822893857, lng: -118.28681492757796 },
+  { lat: 34.02547367742948, lng: -118.28667545270919 },
+  { lat: 34.025660233550276, lng: -118.28652524900436 },
+  { lat: 34.02579801460156, lng: -118.28638376247882 },
+  { lat: 34.02596024812731, lng: -118.28625032258033 },
+  { lat: 34.0261046975971, lng: -118.28613029372691 },
+  { lat: 34.02619579565208, lng: -118.28601562929153 },
+  { lat: 34.026525818266286, lng: -118.28579702925681 },
+  { lat: 34.02670690189788, lng: -118.28570717525481 },
+  { lat: 34.02695642796976, lng: -118.2856233562231 },
+  { lat: 34.02714815685833, lng: -118.28556367707252 }
+];
+
 // Global variables
 let map;
 let streetView;
 let markers = [];
 let infoWindow;
 let currentView = 'map';
+let upcPolygon;
+let uscVillagePolygon;
 
 // Authentication state
 let isAuthenticated = false;
@@ -77,16 +192,74 @@ async function initMap() {
     // Load weather data
     loadWeather();
 
-    // Add a circle to highlight campus area
-    const campusCircle = new google.maps.Circle({
+    // Draw UPC boundary polygon
+    drawUPCBoundary();
+
+    // Draw USC Village boundary polygon
+    drawUSCVillageBoundary();
+}
+
+// Draw the UPC (University Park Campus) boundary on the map
+function drawUPCBoundary() {
+    upcPolygon = new google.maps.Polygon({
+        paths: UPC_BOUNDARY,
         strokeColor: '#990000',
-        strokeOpacity: 0.4,
-        strokeWeight: 2,
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
         fillColor: '#FFCC00',
-        fillOpacity: 0.1,
+        fillOpacity: 0.15,
         map: map,
-        center: USC_CENTER,
-        radius: 800
+        clickable: true
+    });
+
+    // Add click listener to show UPC info
+    upcPolygon.addListener('click', (e) => {
+        const infoContent = `
+            <div style="padding: 10px; max-width: 300px;">
+                <h3 style="color: #990000; margin-bottom: 10px;">🏫 University Park Campus (UPC)</h3>
+                <p style="margin-bottom: 10px;">
+                    USC's main campus in the heart of Los Angeles, home to world-class academic facilities,
+                    student housing, recreation centers, and iconic landmarks.
+                </p>
+                <p><strong>Area:</strong> Approximately 226 acres</p>
+                <p><strong>Established:</strong> 1880</p>
+            </div>
+        `;
+        infoWindow.setContent(infoContent);
+        infoWindow.setPosition(e.latLng || USC_CENTER);
+        infoWindow.open(map);
+    });
+}
+
+// Draw the USC Village boundary on the map
+function drawUSCVillageBoundary() {
+    uscVillagePolygon = new google.maps.Polygon({
+        paths: USC_VILLAGE_BOUNDARY,
+        strokeColor: '#0066CC',
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
+        fillColor: '#0099FF',
+        fillOpacity: 0.2,
+        map: map,
+        clickable: true
+    });
+
+    // Add click listener to show USC Village info
+    uscVillagePolygon.addListener('click', (e) => {
+        const infoContent = `
+            <div style="padding: 10px; max-width: 300px;">
+                <h3 style="color: #0066CC; margin-bottom: 10px;">🏘️ USC Village</h3>
+                <p style="margin-bottom: 10px;">
+                    USC's premier residential and retail complex featuring student housing,
+                    dining options, Target, Trader Joe's, and various shops.
+                </p>
+                <p><strong>Opened:</strong> 2017</p>
+                <p><strong>Size:</strong> 1.25 million square feet</p>
+            </div>
+        `;
+        infoWindow.setContent(infoContent);
+        infoWindow.setPosition(e.latLng);
+        infoWindow.open(map);
     });
 }
 
