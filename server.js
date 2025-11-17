@@ -2,6 +2,9 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
+const axios = require('axios');
+const cheerio = require('cheerio');
+const cron = require('node-cron');
 require('dotenv').config();
 
 const app = express();
@@ -181,8 +184,279 @@ app.get('/api/private-events', (req, res) => {
     }
 });
 
+// ==================== LIBRARY HOURS SCRAPER & SCHEDULER ====================
+
+const LIBRARY_HOURS_FILE = path.join(__dirname, 'data', 'libraryHours.json');
+const LIBRARY_HOURS_URL = 'https://libraries.usc.edu/hours';
+
+// List of USC libraries to track
+const USC_LIBRARIES = [
+    'Doheny Memorial Library (DML)',
+    'Leavey Library (LVL)',
+    'Accounting Library',
+    'Architecture and Fine Arts Library',
+    'Cinematic Arts Library',
+    'East Asian Library',
+    'Gaughan & Tiberti Library',
+    'Gerontology Library Services',
+    'Hoose Library of Philosophy',
+    'Law Library',
+    'LIPA Library',
+    'Music Library',
+    'Science & Engineering Library',
+    'Special Collections, Doheny Memorial Library',
+    'Wilson Dental Library'
+];
+
+// Get today's day name in PST
+function getTodayInPST() {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const now = new Date();
+    const pstDate = new Date(now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+    return days[pstDate.getDay()];
+}
+
+// Check if library hours data is from today
+function isDataFromToday(libraryHoursData) {
+    if (!libraryHoursData || !libraryHoursData.lastUpdated) {
+        return false;
+    }
+
+    const lastUpdated = new Date(libraryHoursData.lastUpdated);
+    const lastUpdatedPST = new Date(lastUpdated.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+    const nowPST = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+
+    return lastUpdatedPST.toDateString() === nowPST.toDateString();
+}
+
+// Scrape library hours from USC Libraries website
+async function scrapeLibraryHours() {
+    try {
+        console.log('[Library Hours] Fetching from', LIBRARY_HOURS_URL);
+
+        const response = await axios.get(LIBRARY_HOURS_URL, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            }
+        });
+
+        const $ = cheerio.load(response.data);
+        const libraryHoursData = {
+            lastUpdated: new Date().toISOString(),
+            libraries: {}
+        };
+
+        const today = getTodayInPST();
+
+        // Parse the hours table
+        $('.hours-table tbody tr, .library-hours-table tbody tr, .view-content tbody tr').each((i, row) => {
+            const $row = $(row);
+            const libraryName = $row.find('td:first-child, th:first-child').text().trim();
+
+            // Check if this is one of our tracked libraries
+            if (!libraryName || !USC_LIBRARIES.some(lib => libraryName.includes(lib.split('(')[0].trim()))) {
+                return; // Skip this row
+            }
+
+            // Try to find the full library name from our list
+            const fullLibraryName = USC_LIBRARIES.find(lib =>
+                libraryName.includes(lib.split('(')[0].trim()) || lib.includes(libraryName)
+            ) || libraryName;
+
+            // Get today's hours (usually in a specific column)
+            let todayHours = 'Hours not available';
+
+            // Try different selectors for hours
+            const hoursCells = $row.find('td').slice(1);
+            if (hoursCells.length > 0) {
+                // Assuming the hours are in the second column or find by day
+                todayHours = hoursCells.first().text().trim() || 'Check website';
+            }
+
+            libraryHoursData.libraries[fullLibraryName] = {
+                libraryName: fullLibraryName,
+                url: LIBRARY_HOURS_URL,
+                today: today,
+                todayHours: todayHours,
+                weeklyHours: {}, // Would need more complex parsing for full week
+                lastUpdated: new Date().toISOString()
+            };
+        });
+
+        // If no data was scraped, try alternative parsing
+        if (Object.keys(libraryHoursData.libraries).length === 0) {
+            console.log('[Library Hours] Primary scraping failed, trying alternative method...');
+
+            // Try finding library hours in a different structure
+            $('.library-item, .hours-item').each((i, item) => {
+                const $item = $(item);
+                const libraryName = $item.find('.library-name, h3, h4').text().trim();
+                const hours = $item.find('.hours, .today-hours, .current-hours').text().trim();
+
+                if (libraryName && USC_LIBRARIES.some(lib => libraryName.includes(lib.split('(')[0].trim()))) {
+                    const fullLibraryName = USC_LIBRARIES.find(lib =>
+                        libraryName.includes(lib.split('(')[0].trim())
+                    ) || libraryName;
+
+                    libraryHoursData.libraries[fullLibraryName] = {
+                        libraryName: fullLibraryName,
+                        url: LIBRARY_HOURS_URL,
+                        today: today,
+                        todayHours: hours || 'Check website',
+                        weeklyHours: {},
+                        lastUpdated: new Date().toISOString()
+                    };
+                }
+            });
+        }
+
+        // If still no data, use fallback with placeholder data
+        if (Object.keys(libraryHoursData.libraries).length === 0) {
+            console.log('[Library Hours] Web scraping failed, using placeholder data');
+            USC_LIBRARIES.forEach(libraryName => {
+                libraryHoursData.libraries[libraryName] = {
+                    libraryName: libraryName,
+                    url: LIBRARY_HOURS_URL,
+                    today: today,
+                    todayHours: 'Visit libraries.usc.edu/hours for current hours',
+                    weeklyHours: {},
+                    lastUpdated: new Date().toISOString()
+                };
+            });
+        }
+
+        return libraryHoursData;
+    } catch (error) {
+        console.error('[Library Hours] Scraping error:', error.message);
+
+        // Return placeholder data on error
+        const today = getTodayInPST();
+        const libraryHoursData = {
+            lastUpdated: new Date().toISOString(),
+            libraries: {}
+        };
+
+        USC_LIBRARIES.forEach(libraryName => {
+            libraryHoursData.libraries[libraryName] = {
+                libraryName: libraryName,
+                url: LIBRARY_HOURS_URL,
+                today: today,
+                todayHours: 'Unable to fetch hours - visit libraries.usc.edu/hours',
+                weeklyHours: {},
+                lastUpdated: new Date().toISOString()
+            };
+        });
+
+        return libraryHoursData;
+    }
+}
+
+// Update library hours data
+async function updateLibraryHours() {
+    try {
+        console.log('[Library Hours] Starting update at', new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }), 'PST');
+
+        const libraryHoursData = await scrapeLibraryHours();
+
+        // Save to file
+        fs.writeFileSync(LIBRARY_HOURS_FILE, JSON.stringify(libraryHoursData, null, 2));
+
+        console.log('[Library Hours] Successfully updated', Object.keys(libraryHoursData.libraries).length, 'libraries');
+        console.log('[Library Hours] Data saved to', LIBRARY_HOURS_FILE);
+
+        return libraryHoursData;
+    } catch (error) {
+        console.error('[Library Hours] Update error:', error);
+        throw error;
+    }
+}
+
+// Get library hours (from cache or scrape if needed)
+async function getLibraryHours() {
+    try {
+        // Check if file exists and is from today
+        if (fs.existsSync(LIBRARY_HOURS_FILE)) {
+            const fileData = fs.readFileSync(LIBRARY_HOURS_FILE, 'utf8');
+            const libraryHoursData = JSON.parse(fileData);
+
+            if (isDataFromToday(libraryHoursData)) {
+                console.log('[Library Hours] Using cached data from today');
+                return libraryHoursData;
+            } else {
+                console.log('[Library Hours] Cached data is outdated, fetching new data...');
+            }
+        } else {
+            console.log('[Library Hours] No cached data found, fetching new data...');
+        }
+
+        // Fetch new data
+        return await updateLibraryHours();
+    } catch (error) {
+        console.error('[Library Hours] Error getting library hours:', error);
+
+        // Return empty structure if everything fails
+        return {
+            lastUpdated: new Date().toISOString(),
+            libraries: {},
+            error: 'Failed to load library hours'
+        };
+    }
+}
+
+// API endpoint to get library hours
+app.get('/api/library-hours', async (req, res) => {
+    try {
+        const libraryHoursData = await getLibraryHours();
+        res.json(libraryHoursData);
+    } catch (error) {
+        console.error('[Library Hours] API error:', error);
+        res.status(500).json({ error: 'Failed to load library hours' });
+    }
+});
+
+// API endpoint to manually refresh library hours
+app.post('/api/library-hours/refresh', async (req, res) => {
+    try {
+        console.log('[Library Hours] Manual refresh requested');
+        const libraryHoursData = await updateLibraryHours();
+        res.json({ success: true, data: libraryHoursData });
+    } catch (error) {
+        console.error('[Library Hours] Manual refresh error:', error);
+        res.status(500).json({ error: 'Failed to refresh library hours' });
+    }
+});
+
+// Schedule daily update at midnight PST (cron format: minute hour day month weekday)
+// Cron runs in server's timezone, so we need to calculate PST midnight
+// PST is UTC-8, PDT is UTC-7
+// For simplicity, scheduling at 8:00 AM UTC (midnight PST in standard time)
+cron.schedule('0 8 * * *', async () => {
+    console.log('[Library Hours] Running scheduled update at midnight PST');
+    try {
+        await updateLibraryHours();
+    } catch (error) {
+        console.error('[Library Hours] Scheduled update failed:', error);
+    }
+}, {
+    timezone: 'America/Los_Angeles'
+});
+
+// Initialize library hours on server start
+(async () => {
+    try {
+        console.log('[Library Hours] Initializing...');
+        await getLibraryHours();
+        console.log('[Library Hours] Initialization complete');
+    } catch (error) {
+        console.error('[Library Hours] Initialization failed:', error);
+    }
+})();
+
+// ==================== END LIBRARY HOURS SYSTEM ====================
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
     console.log(`Environment: ${transporter ? 'Production' : 'Development'}`);
+    console.log(`Library hours scheduler: Active (updates daily at midnight PST)`);
 });

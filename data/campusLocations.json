@@ -71,7 +71,7 @@
     },
     {
         "name": "Law Library",
-        "position": { "lat": 34.018687, "lng": -118.284312 },
+        "position": { "lat": 34.018687, "lng": -118.284437 },
         "description": "Comprehensive legal research library serving USC Gould School of Law.",
         "category": "library",
         "icon": "⚖️"
@@ -117,13 +117,6 @@
         "description": "Historic museum showcasing USC history and artifacts.",
         "category": "museum",
         "icon": "🏛️"
-    },
-    {
-        "name": "USC Village",
-        "position": { "lat": 34.0251, "lng": -118.2855 },
-        "description": "State-of-the-art residential and retail complex featuring dining, housing, and shopping.",
-        "category": "housing",
-        "icon": "🏘️"
     },
     {
         "name": "Lyon Center",
@@ -183,9 +176,9 @@
     },
     {
         "name": "Parkside Dining Hall",
-        "position": { "lat": 34.0183, "lng": -118.2897 },
+        "position": { "lat": 34.018687, "lng": -118.291062 },
         "description": "All-you-can-eat dining facility with diverse food stations.",
-        "category": "eateries",
+        "category": "dining",
         "icon": "🍕"
     },
     {
@@ -201,5 +194,242 @@
         "description": "Top-ranked business school with modern facilities and experiential learning centers.",
         "category": "department",
         "icon": "💼"
-    }
-]
+    },
+    {
+        "name": "Amy King Dundon-Berchtold University Club of USC",
+        "position": { "lat": 34.022562, "lng": -118.283187 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🏛️"
+    },
+    {
+        "name": "Bowls",
+        "position": { "lat": 34.020313, "lng": -118.286313 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍽️"
+    },
+    {
+        "name": "Burgur Crush",
+        "position": { "lat": 34.020313, "lng": -118.286313 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍔"
+    },
+    {
+        "name": "C&G Juice Co.",
+        "position": { "lat": 34.020313, "lng": -118.286313 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🧃"
+    },
+    {
+        "name": "Cafe Annenberg",
+        "position": { "lat": 34.020812, "lng": -118.286937 },
+        "description": "",
+        "category": "eateries",
+        "icon": "☕"
+    },
+    {
+        "name": "Chad Tons Family Cafe",
+        "position": { "lat": 34.018687, "lng": -118.282438 },
+        "description": "",
+        "category": "eateries",
+        "icon": "☕"
+    },
+    {
+        "name": "Coffee Bean & Tea Leaf",
+        "position": { "lat": 34.023562, "lng": -118.286563 },
+        "description": "",
+        "category": "eateries",
+        "icon": "☕"
+    },
+    {
+        "name": "Law School Cafe",
+        "position": { "lat": 34.018687, "lng": -118.284437 },
+        "description": "",
+        "category": "eateries",
+        "icon": "☕"
+    },
+    {
+        "name": "Literatea",
+        "position": { "lat": 34.020063, "lng": -118.283312 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍵"
+    },
+    {
+        "name": "McKay’s",
+        "position": { "lat": 34.019188, "lng": -118.281188 },
+        "description": "",
+        "category": "eateries",
+        "icon": "☕"
+    },
+    {
+        "name": "Moreton Fig Café Serving Equator Coffee",
+        "position": { "lat": 34.019813, "lng": -118.285938 },
+        "description": "",
+        "category": "eateries",
+        "icon": "☕"
+    },
+    {
+        "name": "Panda Express",
+        "position": { "lat": 34.020313, "lng": -118.286313 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🥡"
+    },
+    {
+        "name": "Popovich Café",
+        "position": { "lat": 34.018937, "lng": -118.282687 },
+        "description": "",
+        "category": "eateries",
+        "icon": "☕"
+    },
+    {
+        "name": "Rosso Oro’s",
+        "position": { "lat": 34.019562, "lng": -118.281063 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍕"
+    },
+    {
+        "name": "Seeds Marketplace",
+        "position": { "lat": 34.020562, "lng": -118.286062 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🛒"
+    },
+    {
+        "name": "Slice Shop",
+        "position": { "lat": 34.019937, "lng": -118.286187 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍕"
+    },
+    {
+        "name": "Taco-Taco",
+        "position": { "lat": 34.019937, "lng": -118.286187 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🌮"
+    },
+    {
+        "name": "Trojan Grounds featuring illy",
+        "position": { "lat": 34.021313, "lng": -118.282438 },
+        "description": "",
+        "category": "eateries",
+        "icon": "☕"
+    },
+    {
+        "name": "Tutor Hall Café",
+        "position": { "lat": 34.020063, "lng": -118.289938 },
+        "description": "",
+        "category": "eateries",
+        "icon": "☕"
+    },
+    {
+        "name": "Terra Mia Pizzeria - USC",
+        "position": { "lat": 34.024187, "lng": -118.284688 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍕"
+    },
+    {
+        "name": "City Tacos",
+        "position": { "lat": 34.024313, "lng": -118.284562 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🌮"
+    },
+    {
+        "name": "Rock & Reilly's USC - Restaurant and Bar",
+        "position": { "lat": 34.024812, "lng": -118.284188 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍽️"
+    },
+    {
+        "name": "Chinese Trendy Food",
+        "position": { "lat": 34.024563, "lng": -118.284063 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🥡"
+    },
+    {
+        "name": "Softies Burger - USC Village",
+        "position": { "lat": 34.024438, "lng": -118.284688 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍔"
+    },
+    {
+        "name": "Jimmy John's",
+        "position": { "lat": 34.024812, "lng": -118.284562 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🥪"
+    },
+    {
+        "name": "CAVA",
+        "position": { "lat": 34.025063, "lng": -118.284562 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🥗"
+    },
+    {
+        "name": "Bruxie",
+        "position": { "lat": 34.024812, "lng": -118.284188 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🧇"
+    },
+    {
+        "name": "Giardino Ristorante",
+        "position": { "lat": 34.025188, "lng": -118.284312 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍝"
+    },
+    {
+        "name": "KOBUNGA",
+        "position": { "lat": 34.025063, "lng": -118.285438 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍣"
+    },
+    {
+        "name": "Ramen Kenjo",
+        "position": { "lat": 34.026562, "lng": -118.285438 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍜"
+    },
+    {
+        "name": "sweetgreen",
+        "position": { "lat": 34.026562, "lng": -118.285438 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🥗"
+    },
+    {
+        "name": "Sunlife Organics",
+        "position": { "lat": 34.024938, "lng": -118.285188 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🥗"
+    },
+    {
+        "name": "Cafe Dulce (USC Village)",
+        "position": { "lat": 34.025312, "lng": -118.285438 },
+        "description": "",
+        "category": "eateries",
+        "icon": "☕"
+    },
+    {
+        "name": "Yoboseyo Superette",
+        "position": { "lat": 34.024563, "lng": -118.284562 },
+        "description": "",
+        "category": "eateries",
+        "icon": "🍜"
+    }]

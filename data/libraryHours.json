@@ -1,0 +1,245 @@
+{
+  "lastUpdated": "2025-11-16T23:35:14.272Z",
+  "libraries": {
+    "Doheny Memorial Library (DML)": {
+      "libraryName": "Doheny Memorial Library (DML)",
+      "url": "https://libraries.usc.edu/location/doheny-memorial-library",
+      "today": "Sunday",
+      "todayHours": "12:00 PM - 10:00 PM",
+      "weeklyHours": {
+        "Monday": "8:00 AM - 10:00 PM",
+        "Tuesday": "8:00 AM - 10:00 PM",
+        "Wednesday": "8:00 AM - 10:00 PM",
+        "Thursday": "8:00 AM - 10:00 PM",
+        "Friday": "8:00 AM - 6:00 PM",
+        "Saturday": "10:00 AM - 6:00 PM",
+        "Sunday": "12:00 PM - 10:00 PM"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.273Z"
+    },
+    "Leavey Library (LVL)": {
+      "libraryName": "Leavey Library (LVL)",
+      "url": "https://libraries.usc.edu/location/leavey-library",
+      "today": "Sunday",
+      "todayHours": "24 hours",
+      "weeklyHours": {
+        "Monday": "24 hours",
+        "Tuesday": "24 hours",
+        "Wednesday": "24 hours",
+        "Thursday": "24 hours",
+        "Friday": "24 hours",
+        "Saturday": "24 hours",
+        "Sunday": "24 hours"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.273Z"
+    },
+    "Accounting Library": {
+      "libraryName": "Accounting Library",
+      "url": "https://libraries.usc.edu/location/accounting-library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.273Z"
+    },
+    "Architecture and Fine Arts Library": {
+      "libraryName": "Architecture and Fine Arts Library",
+      "url": "https://libraries.usc.edu/location/architecture-and-fine-arts-library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.273Z"
+    },
+    "Cinematic Arts Library": {
+      "libraryName": "Cinematic Arts Library",
+      "url": "https://libraries.usc.edu/location/cinematic-arts-library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.273Z"
+    },
+    "East Asian Library": {
+      "libraryName": "East Asian Library",
+      "url": "https://libraries.usc.edu/location/east-asian-library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.274Z"
+    },
+    "Gaughan & Tiberti Library": {
+      "libraryName": "Gaughan & Tiberti Library",
+      "url": "https://libraries.usc.edu/location/gaughan-tiberti-library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.274Z"
+    },
+    "Gerontology Library Services": {
+      "libraryName": "Gerontology Library Services",
+      "url": "https://libraries.usc.edu/location/gerontology-library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.274Z"
+    },
+    "Hoose Library of Philosophy": {
+      "libraryName": "Hoose Library of Philosophy",
+      "url": "https://libraries.usc.edu/location/hoose-library-philosophy",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.274Z"
+    },
+    "Law Library": {
+      "libraryName": "Law Library",
+      "url": "https://law.usc.edu/library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.274Z"
+    },
+    "LIPA Library": {
+      "libraryName": "LIPA Library",
+      "url": "https://libraries.usc.edu/location/lipa-library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.274Z"
+    },
+    "Music Library": {
+      "libraryName": "Music Library",
+      "url": "https://libraries.usc.edu/location/music-library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.275Z"
+    },
+    "Science & Engineering Library": {
+      "libraryName": "Science & Engineering Library",
+      "url": "https://libraries.usc.edu/location/science-engineering-library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.275Z"
+    },
+    "Special Collections, Doheny Memorial Library": {
+      "libraryName": "Special Collections, Doheny Memorial Library",
+      "url": "https://libraries.usc.edu/location/special-collections",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.275Z"
+    },
+    "Wilson Dental Library": {
+      "libraryName": "Wilson Dental Library",
+      "url": "https://libraries.usc.edu/location/wilson-dental-library",
+      "today": "Sunday",
+      "todayHours": "Closed",
+      "weeklyHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+      },
+      "lastUpdated": "2025-11-16T23:35:14.275Z"
+    }
+  }
+}

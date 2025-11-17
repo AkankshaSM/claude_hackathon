@@ -371,6 +371,29 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.legend-item:hover {
+    background: #f5f5f5;
+    transform: scale(1.05);
+}
+
+.legend-item:not(.active) {
+    opacity: 0.4;
+}
+
+.legend-item:not(.active) .legend-pin {
+    filter: grayscale(100%);
+}
+
+.legend-item:not(.active) .legend-label {
+    text-decoration: line-through;
+    color: #999;
 }
 
 .legend-pin {
@@ -379,6 +402,7 @@ body {
     border-radius: 50%;
     border: 2px solid white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
 }
 
 .legend-label {
@@ -386,6 +410,7 @@ body {
     font-weight: 500;
     color: #333;
     white-space: nowrap;
+    transition: all 0.3s ease;
 }
 
 /* Private Events View */

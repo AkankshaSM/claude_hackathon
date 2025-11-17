@@ -126,6 +126,18 @@ let currentView = 'map';
 let upcPolygon;
 let uscVillagePolygon;
 
+// Category visibility state
+let activeCategoryFilters = {
+    'library': true,
+    'museum': true,
+    'department': true,
+    'eateries': true,
+    'landmark': true,
+    'housing': true,
+    'recreation': true,
+    'sports': true
+};
+
 // Authentication state
 let isAuthenticated = false;
 let userEmail = '';
@@ -133,6 +145,9 @@ let sessionToken = '';
 
 // Campus Locations - loaded from API
 let campusLocations = [];
+
+// Library hours data
+let libraryHoursData = null;
 
 // Load campus locations from API
 async function loadCampusLocations() {
@@ -151,10 +166,28 @@ async function loadCampusLocations() {
     }
 }
 
+// Load library hours from API
+async function loadLibraryHours() {
+    try {
+        const response = await fetch('/api/library-hours');
+        const data = await response.json();
+
+        if (response.ok) {
+            libraryHoursData = data;
+            console.log('Library hours loaded:', Object.keys(data.libraries || {}).length, 'libraries');
+        } else {
+            console.error('Failed to load library hours');
+        }
+    } catch (error) {
+        console.error('Error loading library hours:', error);
+    }
+}
+
 // Initialize the application
 async function initMap() {
-    // Load campus locations first
+    // Load campus locations and library hours
     await loadCampusLocations();
+    await loadLibraryHours();
 
     // Create the map
     map = new google.maps.Map(document.getElementById('map'), {
@@ -197,6 +230,9 @@ async function initMap() {
 
     // Draw USC Village boundary polygon
     drawUSCVillageBoundary();
+
+    // Setup legend toggle functionality
+    setupLegendToggles();
 }
 
 // Draw the UPC (University Park Campus) boundary on the map
@@ -293,7 +329,7 @@ function getCategoryColor(category) {
 
 // Add markers for campus locations
 function addCampusMarkers() {
-    campusLocations.forEach((location, index) => {
+    campusLocations.forEach((location) => {
         const markerColor = getCategoryColor(location.category);
 
         const marker = new google.maps.Marker({
@@ -336,6 +372,38 @@ function addCampusMarkers() {
         });
 
         markers.push({ marker, location });
+    });
+}
+
+// Setup legend toggle functionality
+function setupLegendToggles() {
+    const legendItems = document.querySelectorAll('.legend-item');
+
+    legendItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const category = item.getAttribute('data-category');
+
+            // Toggle the category state
+            activeCategoryFilters[category] = !activeCategoryFilters[category];
+
+            // Update the legend item visual state
+            if (activeCategoryFilters[category]) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+
+            // Update marker visibility
+            updateMarkerVisibility();
+        });
+    });
+}
+
+// Update marker visibility based on active category filters
+function updateMarkerVisibility() {
+    markers.forEach(({ marker, location }) => {
+        const isVisible = activeCategoryFilters[location.category];
+        marker.setVisible(isVisible);
     });
 }
 
@@ -418,21 +486,94 @@ function populateLocationList() {
     });
 }
 
+// Get library hours HTML for display
+function getLibraryHoursHTML(libraryName) {
+    if (!libraryHoursData || !libraryHoursData.libraries || !libraryHoursData.libraries[libraryName]) {
+        return '<p style="color: #666; font-style: italic; margin-top: 15px;">Hours information not available</p>';
+    }
+
+    const library = libraryHoursData.libraries[libraryName];
+    const today = library.today || 'Today';
+    const todayHours = library.todayHours || 'Check website';
+
+    let hoursHTML = `
+        <div style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-radius: 8px; border-left: 4px solid #990000;">
+            <h3 style="color: #990000; margin-bottom: 10px; font-size: 1.1em;">📅 Library Hours</h3>
+            <div style="margin-bottom: 12px;">
+                <strong style="color: #990000;">${today}:</strong>
+                <span style="color: #333; font-size: 1.05em; margin-left: 8px;">${todayHours}</span>
+            </div>
+    `;
+
+    // Add weekly hours if available
+    if (library.weeklyHours && Object.keys(library.weeklyHours).length > 0) {
+        hoursHTML += '<details style="margin-top: 10px;"><summary style="cursor: pointer; color: #990000; font-weight: 600;">View Full Week Schedule</summary><div style="margin-top: 10px; padding: 10px; background: white; border-radius: 5px;">';
+
+        Object.entries(library.weeklyHours).forEach(([day, hours]) => {
+            const isToday = day === today;
+            hoursHTML += `
+                <div style="padding: 5px 0; ${isToday ? 'font-weight: 600; color: #990000;' : ''}">
+                    <strong>${day}:</strong> <span style="margin-left: 8px;">${hours}</span>
+                </div>
+            `;
+        });
+
+        hoursHTML += '</div></details>';
+    }
+
+    // Add link to library hours page
+    if (library.url) {
+        hoursHTML += `
+            <div style="margin-top: 12px;">
+                <a href="${library.url}" target="_blank" style="color: #990000; text-decoration: none; font-size: 0.9em;">
+                    View on USC Libraries website →
+                </a>
+            </div>
+        `;
+    }
+
+    // Add last updated info
+    if (library.lastUpdated) {
+        const lastUpdated = new Date(library.lastUpdated);
+        const formattedDate = lastUpdated.toLocaleString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            timeZone: 'America/Los_Angeles'
+        });
+        hoursHTML += `<div style="margin-top: 10px; font-size: 0.85em; color: #666;">Last updated: ${formattedDate} PST</div>`;
+    }
+
+    hoursHTML += '</div>';
+    return hoursHTML;
+}
+
 // Show location information in info panel
 function showLocationInfo(location) {
     const infoPanel = document.getElementById('infoPanel');
+
+    let libraryHoursSection = '';
+    // Only show library hours for library category
+    if (location.category === 'library') {
+        libraryHoursSection = getLibraryHoursHTML(location.name);
+    }
+
     infoPanel.innerHTML = `
         <div class="info-content">
             <h2>${location.icon} ${location.name}</h2>
             <p><strong>Category:</strong> ${location.category}</p>
             <p>${location.description}</p>
             <p><strong>Coordinates:</strong> ${location.position.lat.toFixed(4)}, ${location.position.lng.toFixed(4)}</p>
-            <button class="info-link" onclick="viewInStreetView(${location.position.lat}, ${location.position.lng})">
-                View in Street View 👁️
-            </button>
-            <button class="info-link" onclick="getDirections(${location.position.lat}, ${location.position.lng})" style="background: #FFCC00; color: #990000; margin-left: 10px;">
-                Get Directions 🧭
-            </button>
+            ${libraryHoursSection}
+            <div style="margin-top: 20px;">
+                <button class="info-link" onclick="viewInStreetView(${location.position.lat}, ${location.position.lng})">
+                    View in Street View 👁️
+                </button>
+                <button class="info-link" onclick="getDirections(${location.position.lat}, ${location.position.lng})" style="background: #FFCC00; color: #990000; margin-left: 10px;">
+                    Get Directions 🧭
+                </button>
+            </div>
         </div>
     `;
 }
